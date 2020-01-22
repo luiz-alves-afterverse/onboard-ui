@@ -4,7 +4,8 @@ import {
   Row,
   Col,
   Input,
-  Card
+  Card,
+  InputNumber
  } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
@@ -16,3 +17,4 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Input)
 Vue.use(Card)
+Vue.use(InputNumber)

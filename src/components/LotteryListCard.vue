@@ -7,6 +7,7 @@
         <span>{{ name }}</span>
       <div class="bottom clearfix">
         <time class="time">{{ prize }}</time>
+        <el-input-number v-model="numOfTickets" :min="1"></el-input-number>
         <el-button type="text" class="button">Operating</el-button>
       </div>
     </div>
@@ -20,6 +21,11 @@
       id: Number,
       name: String,
       prize: Number
+    },
+    data() {
+      return {
+        numOfTickets: 0
+      };
     }
   }
 </script>
