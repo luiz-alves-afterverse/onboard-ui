@@ -1,10 +1,11 @@
 <template>
   <el-row>
   <el-col :span="8" v-for="lottery in lotteries" v-bind:key="lottery.id">
+    {{things}}
     <LotteryListCard
       v-bind:id="lottery.id"
       v-bind:name="lottery.name"
-      v-bind:prize="lottery.valor">
+      v-bind:prize="lottery.prize">
     </LotteryListCard>
   </el-col>
 </el-row>
@@ -18,20 +19,14 @@ import LotteryListCard from '../components/LotteryListCard.vue'
     components: {
       LotteryListCard
     },
+    created() {
+      this.$lotteryService.findAll().then((response) => {
+        this.lotteries = response
+      })
+    },
     data() {
       return {
-        lotteries: [
-          {
-            id: 1,
-            name: "batatinha",
-            valor: 50
-          },
-          {
-            id: 2,
-            name: "ventiladorzao",
-            valor: 100
-          }
-        ]
+        lotteries: []
       }
     }
   }
