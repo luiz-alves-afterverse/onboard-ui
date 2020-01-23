@@ -8,6 +8,8 @@ Vue.config.productionTip = false
 
 Vue.use(Services);
 
+Vue.http.options.root = "https://sheltered-bastion-22193.herokuapp.com"
+
 new Vue({
   router,
   render: h => h(App)
