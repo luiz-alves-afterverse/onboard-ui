@@ -1,11 +1,11 @@
 <template>
   <el-row>
   <el-col :span="8" v-for="lottery in lotteries" v-bind:key="lottery.id">
-    {{things}}
     <LotteryListCard
       v-bind:id="lottery.id"
       v-bind:name="lottery.name"
-      v-bind:prize="lottery.prize">
+      v-bind:prize="lottery.prize"
+      v-bind:ticketPrice="lottery.ticketPrice">
     </LotteryListCard>
   </el-col>
 </el-row>

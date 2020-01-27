@@ -16,7 +16,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~element-ui/packages/theme-chalk/src/button';
+
+.button {
+  background-color: deeppink;
+}
+
+body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,4 +34,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+.centralized {
+      text-align: center;
+    }
+
 </style>

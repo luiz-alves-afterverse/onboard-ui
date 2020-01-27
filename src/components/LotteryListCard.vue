@@ -1,15 +1,40 @@
 <template>
   <el-card :body-style="{ padding: '0px' }">
-      <div class="image">
-        <span>{{ name }}</span>
+      <div class="upper">
+        <el-row>
+          <h1>{{ name }}</h1>
+        </el-row>
+        <el-row>
+          <el-col :span="8">
+            <el-row>
+              <h2>Ticket Price: {{ ticketPrice }}</h2>
+            </el-row>
+          </el-col>
+          <el-col :offset="8" :span="8">
+            <el-row>
+              <h2>Prize: {{ prize }}</h2>
+            </el-row>
+          </el-col>
+        </el-row>
       </div>
+
       <div style="padding: 14px;">
-        <span>{{ name }}</span>
-      <div class="bottom clearfix">
-        <time class="time">{{ prize }}</time>
-        <el-input-number v-model="numOfTickets" :min="1"></el-input-number>
-        <el-button type="text" class="button">Operating</el-button>
-      </div>
+        <div class="bottom clearfix">
+          <!-- <time class="time">{{ prize }}</time> -->
+          <el-row>
+            <el-col :span="8">
+              <h3>Number of tickets</h3>
+            </el-col>
+            <el-col :span="4">
+              <el-input-number v-model="numOfTickets" :min="1"></el-input-number>
+            </el-col>
+            <el-col :offset="6" :span="6">
+              <el-row>
+                <el-button @click="buyTickets()" type="success">Buy now for {{ numOfTickets * ticketPrice }}</el-button>
+              </el-row>
+            </el-col>
+          </el-row>
+        </div>
     </div>
   </el-card>
 </template>
@@ -17,15 +42,34 @@
 <script>
   export default {
     name: "LotteryListCard",
+
     props: {
       id: Number,
       name: String,
-      prize: Number
+      prize: Number,
+      ticketPrice: Number
     },
+
     data() {
       return {
         numOfTickets: 0
       };
+    },
+
+    methods: {
+      buyTickets() {
+        this.$ticketService.create(this.id, this.numOfTickets)
+        .then((response) => {
+          if (response) {
+            this.$message({message: "You just bought some tickets ^^", type: 'info'})
+          }
+          else
+            this.$message.error("Oooops, something really went wrong :/")
+        })
+        .catch((error) => {
+            this.$message.error(error.status.toString())
+        });
+      }
     }
   }
 </script>
@@ -46,10 +90,8 @@
     float: right;
   }
 
-  .image {
+  .upper {
     width: 100%;
-    height: 200px;
-    background-color: teal;
     display: block;
   }
 

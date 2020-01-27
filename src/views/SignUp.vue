@@ -1,7 +1,7 @@
 <template>
   <div>
      <div class="centralized">
-      <h1>Sign in to Lottery</h1>
+      <h1>Join now and get</h1>
     </div>
 
     <div class="centralized">
@@ -19,12 +19,16 @@
             <el-input placeholder="username" v-model="form.username"></el-input>
           </el-form-item>
 
+          <el-form-item label="Email" prop="email">
+            <el-input placeholder="email" v-model="form.email"></el-input>
+          </el-form-item>
+
           <el-form-item label="Password" prop="password">
             <el-input placeholder="password" v-model="form.password" show-password></el-input>
           </el-form-item>
 
           <el-form-item>
-            <el-button @click="submitForm('form')">Login</el-button>
+            <el-button @click="submitForm('form')">Join</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -34,22 +38,28 @@
 
 <script>
   export default {
-    name: 'login',
+    name: 'join',
 
     data() {
       return {
         form: {
           username: '',
+          email: '',
           password: '',
         },
 
         rules: {
           username: [
             { required: true, message: 'Username is required', trigger: 'blur' },
+            { min: 3, max: 64, message: 'Length should be 3 to 64', trigger: 'blur' }
+          ],
+          email: [
+            { required: true, message: 'Username is required', trigger: 'blur' },
+            {type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
           ],
           password: [
             { required: true, message: 'Password is required', trigger: 'blur' },
-          ],
+          ]
         },
       };
     },
@@ -58,18 +68,19 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.authenticate()
+            this.createUser()
           } else {
             this.$message.error("Sorry, your username and/or password input is invalid D:")
           }
         });
       },
 
-      authenticate() {
-        this.$authenticationService.signIn(this.form.username, this.form.password)
+      createUser() {
+        this.$userService.create(this.form.username, this.form.email, this.form.password)
         .then((response) => {
           if (response) {
-            this.$message({message: "Welcome back :)", type: 'success'})
+            this.$message({message: "Account created :D", type: 'success'})
+            this.$authenticationService.signIn(this.form.username, this.form.password)
             this.$router.push('/')
           }
           else
