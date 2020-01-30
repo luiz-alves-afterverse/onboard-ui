@@ -11,7 +11,7 @@ Vue.use(Services);
 Vue.authenticationService.init();
 
 //Vue.http.options.root = "https://sheltered-bastion-22193.herokuapp.com"
-Vue.http.options.root = "http://localhost:8080"
+Vue.http.options.root = "http://localhost:8080/api"
 Vue.http.interceptors.push((request) => {
   var token = Vue.authenticationService.getAuthenticationToken()
   request.headers.set('Authorization', `Bearer ${token}`);

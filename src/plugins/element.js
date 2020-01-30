@@ -8,7 +8,8 @@ import {
   InputNumber,
   Form,
   FormItem,
-  Message
+  Message,
+  Icon
  } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
@@ -23,6 +24,7 @@ Vue.use(Card);
 Vue.use(InputNumber);
 Vue.use(Form);
 Vue.use(FormItem);
+Vue.use(Icon);
 
 Vue.prototype.$message = Message;
 

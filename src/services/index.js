@@ -1,7 +1,7 @@
 import AuthenticationService from './auth'
 import LotteryService from './lottery'
 import UserService from './user'
-import CreditService from './credit'
+import WalletService from './wallet'
 import TicketService from './ticket'
 
 export default {
@@ -9,7 +9,7 @@ export default {
     Vue.use(LotteryService)
     Vue.use(AuthenticationService)
     Vue.use(UserService)
-    Vue.use(CreditService)
+    Vue.use(WalletService)
     Vue.use(TicketService)
   }
 }

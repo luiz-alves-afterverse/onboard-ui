@@ -7,7 +7,7 @@
     <div class="centralized">
       <el-row type="flex" justify="center">
         <el-col :span="24">
-          <span>Enter your Movile's LDAP credentials</span>
+          <span>Inserir frase aqui</span>
         </el-col>
       </el-row>
     </div>

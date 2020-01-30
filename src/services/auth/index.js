@@ -22,6 +22,10 @@ export default {
         })
       },
 
+      signOut() {
+        window.localStorage.removeItem('token')
+      },
+
       getAuthenticationToken() {
         return this.token;
       }
