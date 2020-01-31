@@ -11,15 +11,17 @@ export default {
         this.token = window.localStorage.getItem('token')
       },
       
-      signIn(username, password) {
+      async signIn(username, password) {
         return Vue.http.post(AUTH_PATH, { username: username, password: password })
-        .then((response) => {
-            this.token = response.body.token
-
-            window.localStorage.setItem('token', this.token)
-
-            return true
-        })
+          .then(
+            (success) => {
+              return success.body
+            },
+            (fail) => {
+              console.log("errou")
+              throw fail
+            }
+          )
       },
 
       signOut() {

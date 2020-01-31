@@ -33,6 +33,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     name: 'login',
 
@@ -55,6 +57,8 @@
     },
 
     methods: {
+      ...mapActions({signIn: 'signIn'}),
+
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -66,7 +70,7 @@
       },
 
       authenticate() {
-        this.$authenticationService.signIn(this.form.username, this.form.password)
+        this.signIn({ username: this.form.username, password: this.form.password})
         .then((response) => {
           if (response) {
             this.$message({message: "Welcome back :)", type: 'success'})
