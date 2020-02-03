@@ -1,15 +1,7 @@
 <template>
   <div>
      <div class="centralized">
-      <h1>Join now and get</h1>
-    </div>
-
-    <div class="centralized">
-      <el-row type="flex" justify="center">
-        <el-col :span="24">
-          <span>Frasezinha boladona</span>
-        </el-col>
-      </el-row>
+      <h1>Join the fun now!</h1>
     </div>
 
      <el-row type="flex" justify="center" class="content-container">
@@ -37,6 +29,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
   export default {
     name: 'join',
 
@@ -65,6 +58,8 @@
     },
 
     methods: {
+      ...mapActions({signIn: 'signIn'}),
+
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -80,7 +75,7 @@
         .then((response) => {
           if (response) {
             this.$message({message: "Account created :D", type: 'success'})
-            this.$authenticationService.signIn(this.form.username, this.form.password)
+            this.signIn(this.form.username, this.form.password)
             this.$router.push('/')
           }
           else
@@ -96,11 +91,15 @@
 
 <style scoped lang="scss">
 
+h1 {
+  color: #ff3e81;
+}
+
 .content-container {
   padding-top: 50px;
 
   .form-container {
-    border: #c1c1c1 dotted 1.5px;
+    border: #6e1ea0 dotted 1.5px;
     padding: 20px 20px 20px 20px;
   }
 }

@@ -1,15 +1,7 @@
 <template>
   <div>
      <div class="centralized">
-      <h1>Sign in to Lottery</h1>
-    </div>
-
-    <div class="centralized">
-      <el-row type="flex" justify="center">
-        <el-col :span="24">
-          <span>Inserir frase aqui</span>
-        </el-col>
-      </el-row>
+      <h1>Sign in to win tons of prizes! :D</h1>
     </div>
 
      <el-row type="flex" justify="center" class="content-container">
@@ -24,7 +16,7 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button @click="submitForm('form')">Login</el-button>
+            <el-button @click="submitForm('form')" round>Sign In</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -71,17 +63,7 @@
 
       authenticate() {
         this.signIn({ username: this.form.username, password: this.form.password})
-        .then((response) => {
-          if (response) {
-            this.$message({message: "Welcome back :)", type: 'success'})
-            this.$router.push('/')
-          }
-          else
-            this.$message.error("Oooops, something really went wrong :/")
-        })
-        .catch((error) => {
-            this.$message.warning(error.status.toString())
-        });
+        .then(() => this.$router.push('/'))
       },
     }
   }
@@ -89,11 +71,16 @@
 
 <style scoped lang="scss">
 
+h1 {
+  color: #ff3e81;
+}
+
 .content-container {
   padding-top: 50px;
 
   .form-container {
-    border: #c1c1c1 dotted 1.5px;
+    //border: #c1c1c1 dotted 1.5px;
+    border: #6e1ea0 dotted 1.5px;
     padding: 20px 20px 20px 20px;
   }
 }

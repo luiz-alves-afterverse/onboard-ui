@@ -7,10 +7,19 @@ export default {
     Vue.use(VueResource);
 
     const walletService = {
-      find() {
+      
+      getWallet() {
         return Vue.http.get(WALLET_PATH)
-        .then(response => response.body)
-        .catch(error => Promise.reject(error.body))
+          .then(
+            (success) => {
+              console.log("Got wallet")
+              return success.body
+            },
+            (fail) => {
+              console.log("Failed when getting wallet")
+              throw fail
+            }
+          )
       }
     };
 

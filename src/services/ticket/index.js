@@ -10,9 +10,22 @@ export default {
       create(lotteryId, quantity) {
         
         return Vue.http.post(TICKET_PATH, { lotteryId: lotteryId, quantity: quantity })
-        .then((response) => {
-          return response
-        })
+          .then(
+            (success) => {
+              return success.body
+            },
+            (fail) => {
+              switch(fail.status) {
+                case 500:
+                  throw "Not enough credits :("
+                case 401:
+                  Vue.message.error("Sorry, you are not logged in")
+                  Vue.router.push('/login')
+                  break
+                default:
+                  throw ":o Something unexpected happened"
+              }
+            })
       }
     };
 

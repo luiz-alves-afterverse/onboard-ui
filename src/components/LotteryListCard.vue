@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
   export default {
     name: "LotteryListCard",
 
@@ -57,18 +58,12 @@
     },
 
     methods: {
+      ...mapActions({fetchCredit: 'fetchCredit'}),
+
       buyTickets() {
         this.$ticketService.create(this.id, this.numOfTickets)
-        .then((response) => {
-          if (response) {
-            this.$message({message: "You just bought some tickets ^^", type: 'info'})
-          }
-          else
-            this.$message.error("Oooops, something really went wrong :/")
-        })
-        .catch((error) => {
-            this.$message.error(error.status.toString())
-        });
+          .then(this.fetchCredit())
+          .catch((error) => this.$message.error(error))
       }
     }
   }
