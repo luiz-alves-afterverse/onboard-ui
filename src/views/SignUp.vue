@@ -20,7 +20,7 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button @click="submitForm('form')">Join</el-button>
+            <el-button @click="submitForm('form')" round>Join</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -75,7 +75,7 @@ import { mapActions } from 'vuex';
         .then((response) => {
           if (response) {
             this.$message({message: "Account created :D", type: 'success'})
-            this.signIn(this.form.username, this.form.password)
+            this.signIn({ username: this.form.username, password: this.form.password})
             this.$router.push('/')
           }
           else

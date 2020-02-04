@@ -79,6 +79,7 @@ export default {
 #logo {
   font-size: 50px;
   font-weight: bold;
+  line-height: 80px;
 }
 
 i {
@@ -102,6 +103,7 @@ i {
 .router-link {
   color: inherit;
   text-decoration: none;
+  outline: 0;
 }
 
 </style>

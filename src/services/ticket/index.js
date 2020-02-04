@@ -1,4 +1,5 @@
 import VueResource from 'vue-resource'
+import router from '../../router'
 
 const TICKET_PATH = 'ticket'
 
@@ -20,7 +21,7 @@ export default {
                   throw "Not enough credits :("
                 case 401:
                   Vue.message.error("Sorry, you are not logged in")
-                  Vue.router.push('/login')
+                  router.push('/login')
                   break
                 default:
                   throw ":o Something unexpected happened"
